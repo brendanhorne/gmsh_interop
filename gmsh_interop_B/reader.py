@@ -452,9 +452,9 @@ class GmshMeshReceiverNumPy(GmshMeshReceiverBase):
         self.element_markers = [None] * count
         self.tags = []
 
-    def add_element(self, element_nr, element_type, vertex_nrs,
+    def add_element(self, element_nr, element_type, vertex_nrs, node_indices,
             lexicographic_nodes, tag_numbers):
-        self.elements[element_nr] = vertex_nrs
+        self.elements[element_nr] = node_indices
         self.element_types[element_nr] = element_type
         self.element_markers[element_nr] = tag_numbers
         # TODO: Add lexicographic node information
@@ -493,7 +493,7 @@ def read_gmsh(receiver, filename, force_dimension=None):
     return result
 
 
-def generate_gmsh(receiver, source, dimensions=None, order=None, other_options=(),
+def generate_gmsh(receiver, source, dimensions=None, order=None, other_options=[],
             extension="geo", gmsh_executable="gmsh", force_dimension=None,
             output_file_name=None, save_tmp_files_in=None):
     """Run gmsh and feed the output to *receiver*.
@@ -558,18 +558,9 @@ def parse_gmsh(receiver, line_iterable, force_dimension=None):
                     raise GmshFileFormatError(
                             "more than one line found in MeshFormat section")
 
-                if not version_number.startswith("2."):
-                    # https://github.com/inducer/gmsh_interop/issues/18
-                    raise NotImplementedError(
-                        f"Unsupported mesh version number '{version_number}' "
-                        "found. Convert your mesh to a v2.x mesh using "
-                        "'gmsh your_msh.msh -save -format msh2 -o your_msh-v2.msh'")
-
                 if version_number not in ["2.1", "2.2"]:
                     from warnings import warn
-                    warn(
-                            f"unexpected mesh version number '{version_number}' "
-                            "found, continuing")
+                    warn("unexpected mesh version number '{version_number}' found")
 
                 if file_type != "0":
                     raise GmshFileFormatError(
@@ -658,7 +649,7 @@ def parse_gmsh(receiver, line_iterable, force_dimension=None):
 
                 receiver.add_element(element_nr=zero_based_idx,
                         element_type=element_type, vertex_nrs=gmsh_vertex_nrs,
-                        lexicographic_nodes=node_indices[
+                        node_indices=node_indices, lexicographic_nodes=node_indices[
                             element_type.get_lexicographic_gmsh_node_indices()],
                         tag_numbers=tag_numbers)
 

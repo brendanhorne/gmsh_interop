@@ -9,7 +9,7 @@ with open(version_file_name) as version_file:
 
 exec(compile(version_file_contents, version_file_name, "exec"), ver_dic)
 
-setup(name="gmsh_interop",
+setup(name="gmsh_interop_B",
       version=ver_dic["VERSION_TEXT"],
       description="A parser for GMSH's .msh format",
       long_description=open("README.rst").read(),
