@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 ver_dic = {}
-version_file_name = "gmsh_interop/version.py"
+version_file_name = "gmsh_interop_B/version.py"
 with open(version_file_name) as version_file:
     version_file_contents = version_file.read()
 
@@ -40,7 +40,7 @@ setup(name="gmsh_interop_B",
           ],
 
       author="Andreas Kloeckner",
-      url="http://github.com/inducer/gmsh_interop",
+      url="https://github.com/brendanhorne/gmsh_interop",
       author_email="inform@tiker.net",
       license="MIT",
       packages=find_packages())
