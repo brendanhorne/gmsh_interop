@@ -3,13 +3,13 @@
 from setuptools import setup, find_packages
 
 ver_dic = {}
-version_file_name = "gmsh_interop_B/version.py"
+version_file_name = "gmsh_interop_b/version.py"
 with open(version_file_name) as version_file:
     version_file_contents = version_file.read()
 
 exec(compile(version_file_contents, version_file_name, "exec"), ver_dic)
 
-setup(name="gmsh_interop_B",
+setup(name="gmsh_interop_b",
       version=ver_dic["VERSION_TEXT"],
       description="A parser for GMSH's .msh format",
       long_description=open("README.rst").read(),
