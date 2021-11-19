@@ -10,8 +10,8 @@ author = "Andreas Klöckner"
 
 ver_dic = {}
 exec(compile(
-    open("../gmsh_interop/version.py").read(),
-    "../gmsh_interop/version.py", "exec"), ver_dic)
+    open("../gmsh_interop_b/version.py").read(),
+    "../gmsh_interop_b/version.py", "exec"), ver_dic)
 version = ".".join(str(x) for x in ver_dic["VERSION"])
 release = ver_dic["VERSION_TEXT"]
 

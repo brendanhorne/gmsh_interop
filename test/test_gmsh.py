@@ -110,8 +110,8 @@ def test_simplex_gmsh(dim, order, visualize=False):
     else:
         save_tmp_files_in = None
 
-    from gmsh_interop.reader import generate_gmsh, GmshMeshReceiverBase
-    from gmsh_interop.runner import ScriptSource
+    from gmsh_interop_b.reader import generate_gmsh, GmshMeshReceiverBase
+    from gmsh_interop_b.runner import ScriptSource
 
     mr = GmshMeshReceiverBase()
     source = ScriptSource(GMSH_SPHERE, "geo")
@@ -130,8 +130,8 @@ def test_quad_gmsh(dim, order, visualize=False):
     else:
         save_tmp_files_in = None
 
-    from gmsh_interop.reader import generate_gmsh, GmshMeshReceiverBase
-    from gmsh_interop.runner import ScriptSource
+    from gmsh_interop_b.reader import generate_gmsh, GmshMeshReceiverBase
+    from gmsh_interop_b.runner import ScriptSource
 
     if dim == 2:
         source = ScriptSource(GMSH_QUAD_SPHERE, "geo")

@@ -28,7 +28,7 @@ from functools import reduce
 import numpy as np
 #import numpy.linalg as la
 from pytools import memoize_method, Record
-from gmsh_interop.runner import (  # noqa
+from gmsh_interop_b.runner import (  # noqa
         ScriptSource, LiteralSource, FileSource, ScriptWithFilesSource)
 
 
@@ -264,12 +264,12 @@ class GmshTriangularElement(GmshSimplexElementBase):
     @property
     @memoize_method
     def element_type(self):
-        from gmsh_interop.node_tuples import triangle_data
+        from gmsh_interop_b.node_tuples import triangle_data
         return triangle_data[self.order]["element_type"]
 
     @memoize_method
     def gmsh_node_tuples(self):
-        from gmsh_interop.node_tuples import triangle_data
+        from gmsh_interop_b.node_tuples import triangle_data
         return triangle_data[self.order]["node_tuples"]
 
 
@@ -279,12 +279,12 @@ class GmshTetrahedralElement(GmshSimplexElementBase):
     @property
     @memoize_method
     def element_type(self):
-        from gmsh_interop.node_tuples import tetrahedron_data
+        from gmsh_interop_b.node_tuples import tetrahedron_data
         return tetrahedron_data[self.order]["element_type"]
 
     @memoize_method
     def gmsh_node_tuples(self):
-        from gmsh_interop.node_tuples import tetrahedron_data
+        from gmsh_interop_b.node_tuples import tetrahedron_data
         return tetrahedron_data[self.order]["node_tuples"]
 
 # }}}
@@ -320,12 +320,12 @@ class GmshQuadrilateralElement(GmshTensorProductElementBase):
     @property
     @memoize_method
     def element_type(self):
-        from gmsh_interop.node_tuples import quadrangle_data
+        from gmsh_interop_b.node_tuples import quadrangle_data
         return quadrangle_data[self.order]["element_type"]
 
     @memoize_method
     def gmsh_node_tuples(self):
-        from gmsh_interop.node_tuples import quadrangle_data
+        from gmsh_interop_b.node_tuples import quadrangle_data
         return quadrangle_data[self.order]["node_tuples"]
 
 
@@ -335,12 +335,12 @@ class GmshHexahedralElement(GmshTensorProductElementBase):
     @property
     @memoize_method
     def element_type(self):
-        from gmsh_interop.node_tuples import hexahedron_data
+        from gmsh_interop_b.node_tuples import hexahedron_data
         return hexahedron_data[self.order]["element_type"]
 
     @memoize_method
     def gmsh_node_tuples(self):
-        from gmsh_interop.node_tuples import hexahedron_data
+        from gmsh_interop_b.node_tuples import hexahedron_data
         return hexahedron_data[self.order]["node_tuples"]
 
 # }}}
@@ -502,7 +502,7 @@ def generate_gmsh(receiver, source, dimensions=None, order=None, other_options=[
         interface.
     :arg source: an instance of :class:`ScriptSource` or :class:`FileSource`.
     """
-    from gmsh_interop.runner import GmshRunner
+    from gmsh_interop_b.runner import GmshRunner
     runner = GmshRunner(source, dimensions, order=order,
             other_options=other_options, extension=extension,
             gmsh_executable=gmsh_executable,
